@@ -5,224 +5,488 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #141414;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.category-section {
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 40px;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.book-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    overflow: hidden;
+    height: auto;
+    flex: 0 0 auto;  
+    width: 225px; 
+    max-width: 230px;
+    margin: 0 10px;  
+    
+}
+
+.book img {
+    width: 100%;
+    height: auto;
+}
+
+.book-title {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.book:hover {
+    transform: scale(1.05);
+}
+
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+align-items: center;
+justify-content: center;
+z-index: 10;
+}
         
-        body {
-            background-color: #141414;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            overflow-x: hidden;
-        }
+.modal-content {
+background-color: #333;
+padding: 20px;
+width: 90%;
+max-width: 700px;
+display: flex;
+gap: 20px;
+position: relative;
+border-radius: 10px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+color: #ffffff;
+}
         
-        .category-section {
-            width: 100%;
-            margin-top: 40px;
-            padding: 0 40px;
-        }
+.close-modal {
+cursor: pointer;
+font-size: 1.5rem;
+position: absolute;
+top: 10px;
+right: 10px;
+color: #ffffff;
+}
         
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+.modal img {
+width: 150px;
+height: 220px;
+border-radius: 5px;
+}
         
-        .book-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
+.modal-book-info {
+display: flex;
+flex-direction: column;
+gap: 10px;
+width: calc(100% - 170px);
+}
         
-        .book {
-            background-color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 10px;
-            color: #ffffff;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
+.modal-book-info h3 {
+font-size: 1.5rem;
+margin-bottom: 5px;
+}
         
-        .book img {
-            width: 100%;
-            height: auto;
-        }
+.modal-book-info p {
+font-size: 1rem;
+margin: 5px 0;
+}
         
-        .book-title {
-            padding: 10px;
-            text-align: center;
-            font-size: 1.1rem;
+.read-button {
+margin-top: 20px;
+padding: 10px;
+background-color: #e50914;
+color: #ffffff;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+transition: background-color 0.3s;
+align-self: flex-start;
+}
+
+.read-button:hover {
+ background-color: #d40812;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.carousel {
+    display:flex;
+    flex-direction: row;
+    transition: transform 0.5s ease-in-out;
+    gap: 10px;
+    width: 100%;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1;
+}
+
+.left-btn {
+    left: -9px;
+    border-radius: 15px;
+}
+
+.right-btn {
+    right: -9px;
+    border-radius: 15px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .book {
+        width: calc(100% / 4); /* Exibe 4 itens em telas médias */
+    }
+}
+
+@media (max-width: 768px) {
+    .book {
+        width: calc(100% / 2); /* Exibe 2 itens em telas pequenas */
+    }
+}
+
+@media (max-width: 480px) {
+    .book {
+        width: 100%; /* Exibe 1 item por vez em telas muito pequenas */
+    }
+}
+
+
+.cabecalho {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: #b0c4de;
+    padding: 10px 15px;
+    font-size: 20px;
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+}
+
+footer .content {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-button {
+    padding: 10px 20px;
+    background-color: #b0c4de;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.footer-button:hover {
+    color: #000000;
+    border-bottom: 2px solid #002fff
+}
+
+.button-left {
+    color: #000000;
+    margin-left: auto;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+    transform: scale(1.05);
+}
+
+.button-right {
+    margin-left: auto;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+    transform: scale(1.05);
+}
+
+.logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: #000000;
+}
+
+.rodape{
+    background-color: #333;
+    padding:top;
+    display: flex;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    position:static;
+    width: 100%;
+    bottom: 0; 
+    left: 0;
+}
+
+.box{
+    width: 200px;
+    height: 150px;
+    background-color: #a3a095;
+    border: 1px solid #312e2e;
+    border-radius: 10px;
+    display: none;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    position: absolute; 
+    top: 10px; 
+    right: 10px;
+}
+
+.box.show {
+            display: block;
         }
-        
-        .book:hover {
-            transform: scale(1.05);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-        
-        .modal-content {
-            background-color: #333;
-            padding: 20px;
-            width: 90%;
-            max-width: 700px;
-            display: flex;
-            gap: 20px;
-            position: relative;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-        }
-        
-        .close-modal {
-            cursor: pointer;
-            font-size: 1.5rem;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #ffffff;
-        }
-        
-        .modal img {
-            width: 150px;
-            height: 220px;
-            border-radius: 5px;
-        }
-        
-        .modal-book-info {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: calc(100% - 170px);
-        }
-        
-        .modal-book-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .modal-book-info p {
-            font-size: 1rem;
-            margin: 5px 0;
-        }
-        
-        .read-button {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e50914;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            align-self: flex-start;
-        }
-        
-        .read-button:hover {
-            background-color: #d40812;
-        }
+
+
     </style>
 </head>
 <body>
-
+    <footer class="cabecalho">
+        <button class="footer-button button-left" onclick="window.location.href='índice.html';">Tela inicial</button>
+        <div class="content">
+            <div class="logo">Biblioteca Virtual de Educação Financeira</div>
+            <p>CoinWiz </p>
+        </div>
+        <button class="footer-button button-right" id="caixa">Aviso</button>
+    </footer>
+    <div class="box" id="box">
+        <p>Os livros atuais não estão disponíveis por questões de direitos autorais.</p>
+        <button id="closeBox" style="position: absolute; top: 10px; right: 10px;">X</button>
+    </div>
+    
+<br>
     <!-- Categorias e Livros -->
+
     <div class="category-section">
         <div class="category-title">Categoria: Investimentos</div>
+    
+       
         <div class="book-sections">
+
+
+       
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <button class="scroll-btn left-btn">◀</button>
+
+
             <div class="book" onclick="openModal(this)" data-title="Bolsa Blindada 2" data-author="Gustavo Cerbasi" data-image="IMG capas/Bolsa Blindada 2 – Gustavo Cerbasi.jpg" data-description="Um guia essencial para proteger seus investimentos e obter melhores retornos." data-release="2018">
-                <img src="IMG capas/Bolsa Blindada 2 – Gustavo Cerbasi.jpg" alt="Bolsa Blindada 2">
+                <img src="Capas IMG/Bolsa Blindada 2 – Gustavo Cerbasi.jpg" alt="Bolsa Blindada 2">
                 <div class="book-title">Bolsa Blindada 2 – Gustavo Cerbasi</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Aprenda a Operar no Mercado de Ações" data-author="Alexandre Wolwacz" data-image="IMG capas/Aprenda a Operar no Mercado de Ações – Alexander Elder.jpg" data-description="Estratégias e técnicas para operar no mercado de ações com sucesso." data-release="2020">
-                <img src="IMG capas/Aprenda a Operar no Mercado de Ações – Alexander Elder.jpg" alt="Aprenda a Operar no Mercado de Ações">
+                <img src="Capas IMG/Aprenda a Operar no Mercado de Ações – Alexander Elder.jpg" alt="Aprenda a Operar no Mercado de Ações">
                 <div class="book-title">Aprenda a Operar no Mercado de Ações – Alexandre Wolwacz</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="O Rei dos Dividendos" data-author="Luiz Barsi" data-image="IMG capas/O Rei dos Dividendos - Luiz Barsi.jpg" data-description="Como obter rendimentos sustentáveis com estratégias de dividendos." data-release="2019">
-                <img src="IMG capas/O Rei dos Dividendos - Luiz Barsi.jpg" alt="O Rei dos Dividendos">
+                <img src="Capas IMG/O Rei Dos Dividendos - Luiz Barsi.jpg" alt="O Rei dos Dividendos">
                 <div class="book-title">O Rei dos Dividendos – Luiz Barsi</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Pequeno Livro dos Grandes Investidores" data-author="Matthew R. Kratter" data-image="IMG capas/Pequeno Livro dos Grandes Investidores  Matthew R. Kratter.jpg" data-description="Dicas e insights de alguns dos maiores investidores do mundo." data-release="2021">
-                <img src="IMG capas/Pequeno Livro dos Grandes Investidores  Matthew R. Kratter.jpg" alt="Pequeno Livro dos Grandes Investidores">
+                <img src="Capas IMG/Pequeno Livro dos Grandes Investidores  Matthew R. Kratter.jpg" alt="Pequeno Livro dos Grandes Investidores">
                 <div class="book-title">Pequeno Livro dos Grandes Investidores – Matthew R. Kratter</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Cartas a um Jovem Investidor" data-author="Gustavo Cerbasi" data-image="IMG capas/Cartas a um Jovem Investidor – Gustavo Cerbasi.jpg" data-description="Conselhos de um dos maiores especialistas em educação financeira do Brasil." data-release="2017">
-                <img src="IMG capas/Cartas a um Jovem Investidor – Gustavo Cerbasi.jpg" alt="Cartas a um Jovem Investidor">
+                <img src="Capas IMG/Cartas a um Jovem Investidor – Gustavo Cerbasi.jpg" alt="Cartas a um Jovem Investidor">
                 <div class="book-title">Cartas a um Jovem Investidor – Gustavo Cerbasi</div>
             </div>
+
+            <div class="book" onclick="openModal(this)" data-title="Guia Suno Dividendos" data-author="Tiago Reis" data-image="Capas IMG/Guia Suno Dividendos - Tiago Reis.jpg" data-description="Dicas e insights de alguns dos maiores investidores do mundo." data-release="2017">
+                <img src="Capas IMG/Guia Suno Dividendos - Tiago Reis.jpg" alt="Guia Suno Dividendos">
+                <div class="book-title">Guia Suno Dividendos – Tiago Reis</div>
+            </div>
+
+            <div class="book" onclick="openModal(this)" data-title="Faça Fortuna com Ações" data-author="Décio Bazin" data-image="IMG capas/Faça Fortuna com Ações – Décio Bazin.jpg" data-description="Investir com inteligência no mercado de ações, destacando a importância de estudar o mercado, entender os riscos e construir uma estratégia de longo prazo." data-release="1992">
+                <img src="Capas IMG/Faça Fortuna com Ações – Décio Bazin.jpg" alt="Faça Fortuna com Ações">
+                <div class="book-title">Faça Fortuna com Ações – Décio Bazin</div>
+            </div>
+
+            <button class="scroll-btn right-btn" id="direita">▶</button>
         </div>
     </div>
+</div>
+</div>
+
+
+    
+<br>
 
     <div class="category-section">
         <div class="category-title">Categoria: Desenvolvimento Pessoal</div>
         <div class="book-sections">
+      
+       
+            <div class="carousel-container">
+                <div class="carousel">
+                    <button class="scroll-btn left-btn">◀</button>
+
             <div class="book" onclick="openModal(this)" data-title="A Fórmula do Sucesso" data-author="Michael Mauboussin" data-image="IMG capas/A Fórmula do Sucesso – Michael Mauboussin.jpg" data-description="Entenda os fatores que influenciam o sucesso em diferentes áreas da vida." data-release="2015">
-                <img src="IMG capas/A Fórmula do Sucesso – Michael Mauboussin.jpg" alt="A Fórmula do Sucesso">
+                <img src="Capas IMG/A Fórmula do Sucesso – Michael Mauboussin.jpg" alt="A Fórmula do Sucesso">
                 <div class="book-title">A Fórmula do Sucesso – Michael Mauboussin</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="O Poder do Hábito" data-author="Charles Duhigg" data-image="IMG capas/O Poder do Hábito - Charles Dhuhigg.jpg" data-description="Como hábitos moldam nossas vidas e como mudá-los para melhor." data-release="2012">
-                <img src="IMG capas/O Poder do Hábito - Charles Dhuhigg.jpg" alt="O Poder do Hábito">
+                <img src="Capas IMG/O Poder do Hábito - Charles Dhuhigg.jpg" alt="O Poder do Hábito">
                 <div class="book-title">O Poder do Hábito – Charles Duhigg</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Rápido e Devagar: Duas Formas de Pensar" data-author="Daniel Kahneman" data-image="IMG capas/Rápido e Devagar Duas Formas de Pensar  Daniel Kahneman.jpg" data-description="Explora como a mente funciona e as duas formas de pensamento humano." data-release="2011">
-                <img src="IMG capas/Rápido e Devagar Duas Formas de Pensar  Daniel Kahneman.jpg" alt="Rápido e Devagar">
+                <img src="Capas IMG/Rápido e Devagar Duas Formas de Pensar  Daniel Kahneman.jpg" alt="Rápido e Devagar">
                 <div class="book-title">Rápido e Devagar: Duas Formas de Pensar – Daniel Kahneman</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Inteligência Financeira" data-author="Jake Thompson" data-image="IMG capas/Inteligência Financeira – Jake Thompson.jpg" data-description="Como melhorar sua relação com o dinheiro e alcançar suas metas financeiras." data-release="2019">
-                <img src="IMG capas/Inteligência Financeira – Jake Thompson.jpg" alt="Inteligência Financeira">
+                <img src="Capas IMG/Inteligência Financeira – Jake Thompson.jpg" alt="Inteligência Financeira">
                 <div class="book-title">Inteligência Financeira – Jake Thompson</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Transforme-se em um Investidor Vencedor" data-author="Ted D. Snow" data-image="IMG capas/Transforme-se em um Investidor Vencedor – Ted D. Snow.jpg" data-description="Estratégias e habilidades para ser um investidor de sucesso." data-release="2020">
-                <img src="IMG capas/Transforme-se em um Investidor Vencedor – Ted D. Snow.jpg" alt="Transforme-se em um Investidor Vencedor">
+                <img src="Capas IMG/Transforme-se em um Investidor Vencedor – Ted D. Snow.jpg" alt="Transforme-se em um Investidor Vencedor">
                 <div class="book-title">Transforme-se em um Investidor Vencedor – Ted D. Snow</div>
             </div>
+            <div class="book" onclick="openModal(this)" data-title="Moneyball O Homem que Mudou o Jogo" data-author="Michael Lewis" data-image="Capas IMG/Moneyball O Homem que Mudou o Jogo – Michael Lewis.jpg" data-description="Explora como análises estatísticas revolucionaram o beisebol ao desafiar métodos tradicionais de gestão, transformando times com orçamentos limitados em concorrentes eficazes." data-release="2003">
+                <img src="Capas IMG/Moneyball O Homem que Mudou o Jogo – Michael Lewis.jpg" alt="Moneyball O Homem que Mudou o Jogo">
+                <div class="book-title">Moneyball O Homem que Mudou o Jogo – Michael Lewis</div>
+            </div>
+            <div class="book" onclick="openModal(this)" data-title="Aprendizados do Milionário" data-author="David Bach" data-image="Capas IMG/Aprendizados do Milionário – David Bach.jpg" data-description="Como conquistar a liberdade financeira por meio de hábitos simples e consistentes, destacando a importância de poupar e investir cedo." data-release="2004">
+                <img src="Capas IMG/Aprendizados do Milionário – David Bach.jpg" alt="Aprendizados do Milionário">
+                <div class="book-title">Aprendizados do Milionário – David Bach</div>
+            </div>
+            <button class="scroll-btn right-btn" id="direita">▶</button>
         </div>
     </div>
+</div>
+</div>
 
-    <div class="category-section">
-        <div class="category-title">Categoria: Estratégias e Mercados</div>
+    <br>
+
+<div class="category-section">
+    <div class="category-title">Categoria: Estratégias e Mercados</div>
         <div class="book-sections">
+
+            <div class="carousel-container">
+                <div class="carousel">
+                    <button class="scroll-btn left-btn">◀</button>
             <div class="book" onclick="openModal(this)" data-title="A Ordem Mundial Em Transformação" data-author="Ray Dalio" data-image="IMG capas/A Ordem Munidal Em Transformação – Ray Dalio.jpg" data-description="Uma análise das mudanças no cenário econômico e suas implicações." data-release="2022">
-                <img src="IMG capas/A Ordem Munidal Em Transformação – Ray Dalio.jpg" alt="A Ordem Mundial Em Transformação">
+                <img src="Capas IMG/A Ordem Munidal Em Transformação – Ray Dalio.jpg" alt="A Ordem Mundial Em Transformação">
                 <div class="book-title">A Ordem Mundial Em Transformação – Ray Dalio</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Alpha Trader" data-author="Brent Donnelly" data-image="IMG capas/Alpha Trader – Brent Donnelly.jpg" data-description="Técnicas e estratégias para se tornar um trader de sucesso." data-release="2021">
-                <img src="IMG capas/Alpha Trader – Brent Donnelly.jpg" alt="Alpha Trader">
+                <img src="Capas IMG/Alpha Trader – Brent Donnelly.jpg" alt="Alpha Trader">
                 <div class="book-title">Alpha Trader – Brent Donnelly</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="Market Wizards" data-author="Jack D. Schwager" data-image="IMG capas/Market Wizards – Jack D. Schwager.jpg" data-description="Histórias e lições dos maiores traders do mercado." data-release="1989">
-                <img src="IMG capas/Market Wizards – Jack D. Schwager.jpg" alt="Market Wizards">
+                <img src="Capas IMG/Market Wizards – Jack D. Schwager.jpg" alt="Market Wizards">
                 <div class="book-title">Market Wizards – Jack D. Schwager</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="O Efeito Warren Buffett" data-author="Robert G. Hagstrom" data-image="IMG capas/O Efeito Warren Buffett – Robert G. Hagstrom.jpg" data-description="A filosofia de investimento de Warren Buffett e como aplicá-la." data-release="1994">
-                <img src="IMG capas/O Efeito Warren Buffett – Robert G. Hagstrom.jpg" alt="O Efeito Warren Buffett">
+                <img src="Capas IMG/O Efeito Warren Buffett – Robert G. Hagstrom.jpg" alt="O Efeito Warren Buffett">
                 <div class="book-title">O Efeito Warren Buffett – Robert G. Hagstrom</div>
             </div>
+
             <div class="book" onclick="openModal(this)" data-title="O Jeito Peter Lynch de Investir" data-author="Peter Lynch" data-image="IMG capas/O Jeito Peter Lynch de Investir – Peter Lynch.jpg" data-description="Lições de investimento de um dos maiores gestores de fundos." data-release="1989">
-                <img src="IMG capas/O Jeito Peter Lynch de Investir – Peter Lynch.jpg" alt="O Jeito Peter Lynch de Investir">
+                <img src="Capas IMG/O Jeito Peter Lynch de Investir – Peter Lynch.jpg" alt="O Jeito Peter Lynch de Investir">
                 <div class="book-title">O Jeito Peter Lynch de Investir – Peter Lynch</div>
             </div>
+
+            <div class="book" onclick="openModal(this)" data-title="O Segredo das Vendas" data-author="Brian Tracy" data-image="Capas IMG/O Segredo das Vendas – Brian Tracy.jpg" data-description="Estratégias práticas e psicológicas para aumentar a eficácia em vendas e construir relacionamentos duradouros com clientes." data-release="2022">
+                <img src="Capas IMG/O Segredo das Vendas – Brian Tracy.jpg" alt="O Segredo das Vendas">
+                <div class="book-title">O Segredo das Vendas – Brian Tracy</div>
+            </div>
+
+            <div class="book" onclick="openModal(this)" data-title="Técnicas de Análise Técnica" data-author="Martin J. Pring" data-image="Capas IMG/Técnicas de Análise Técnica – Martin J. Pring.jpg" data-description="Um guia abrangente sobre como aplicar métodos gráficos e indicadores técnicos para interpretar mercados financeiros e tomar decisões de investimento." data-release="1980">
+                <img src="Capas IMG/Técnicas de Análise Técnica – Martin J. Pring.png" alt="Técnicas de Análise Técnic">
+                <div class="book-title">Técnicas de Análise Técnica – Martin J. Pring</div>
+            </div>
+
+            <div class="book" onclick="openModal(this)" data-title="Hedge Funds As Estratégias" data-author="Anthony Scaramucci" data-image="Capas IMG/Hedge Funds As Estratégias  Anthony Scaramucci.jpg" data-description="Uma introdução abrangente às estratégias de investimento de hedge funds, detalhando como funcionam, seus riscos e vantagens para investidores interessados nesse mercado sofisticado." data-release="2012">
+                <img src="Capas IMG/Hedge Funds As Estratégias  Anthony Scaramucci.jpg" alt="Hedge Funds As Estratégias">
+                <div class="book-title">Hedge Funds As Estratégias - Anthony Scaramucci</div>
+            </div>
+
+            <button class="scroll-btn right-btn" id="direita">▶</button>
         </div>
     </div>
+</div>
+</div>
 
+
+
+    
+<br>
     <!-- Modal -->
     <div class="modal" id="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -233,10 +497,18 @@
                 <p><strong>Autor:</strong> <span id="modal-author"></span></p>
                 <p><strong>Descrição:</strong> <span id="modal-description"></span></p>
                 <p><strong>Lançamento:</strong> <span id="modal-release"></span></p>
-                <button class="read-button">Ler</button>
+                <button class="read-button" onclick="alert('Esse livro não esta disponível por questão de direitos autorais.')">Ler </button>
             </div>
         </div>
     </div>
+
+
+
+    <br>
+    <footer class="rodape">
+        <p>&copy; 2024 CoinWiz. Área da Biblioteca.</p>
+    
+    </footer>
 
     <script>
         function openModal(bookElement) {
@@ -246,6 +518,10 @@
     document.getElementById('modal-release').textContent = bookElement.getAttribute('data-release');
     document.getElementById('modal-image').src = bookElement.getAttribute('data-image');
     document.getElementById('modal').style.display = 'flex';
+
+    document.querySelectorAll('.book').forEach(book => {
+    book.addEventListener('click', () => openModal(book));
+});
 }
 
         function closeModal(event) {
@@ -253,7 +529,80 @@
                 document.getElementById('modal').style.display = 'none';
             }
         }
-    </script>
+
+
+
+    
+        document.querySelectorAll('.carousel-container').forEach(container => {
+    const carousel = container.querySelector('.carousel');
+    const leftBtn = container.querySelector('.left-btn');
+    const rightBtn = container.querySelector('.right-btn');
+
+    let scrollPosition = 0;
+
+    function moveItems(direction) {
+        const items = carousel.querySelectorAll('.book');
+        if (direction === 'right') {
+            const firstItem = items[0];
+            carousel.appendChild(firstItem); 
+        } else if (direction === 'left') {
+            const lastItem = items[items.length - 1];
+            carousel.prepend(lastItem); 
+        }
+    }
+
+    function scrollCarousel(direction) {
+        const itemWidth = carousel.querySelector('.book').offsetWidth + 15;
+
+        if (direction === 'right') {
+            scrollPosition -= itemWidth;
+            carousel.style.transform = `translateX(${scrollPosition}px)`;
+
+            setTimeout(() => {
+                moveItems('right');
+                scrollPosition += itemWidth;
+                carousel.style.transition = 'none';
+                carousel.style.transform = `translateX(${scrollPosition}px)`;
+                setTimeout(() => (carousel.style.transition = 'transform 0.5s ease-in-out'), 0);
+            }, 500);
+        } else if (direction === 'left') {
+            scrollPosition += itemWidth;
+            carousel.style.transform = `translateX(${scrollPosition}px)`;
+
+            setTimeout(() => {
+                moveItems('left');
+                scrollPosition -= itemWidth;
+                carousel.style.transition = 'none';
+                carousel.style.transform = `translateX(${scrollPosition}px)`;
+                setTimeout(() => (carousel.style.transition = 'transform 0.5s ease-in-out'), 0);
+            }, 500);
+        }
+    }
+
+    leftBtn.addEventListener('click', () => scrollCarousel('left'));
+    rightBtn.addEventListener('click', () => scrollCarousel('right'));
+});
+
+const nextButton = document.querySelector('.next');
+nextButton?.addEventListener('click', function () {
+    console.log('Botão "Next" clicado!');
+});
+
+    const caixa = document.getElementById('caixa');
+        const box = document.getElementById('box');
+        const closeButton = document.getElementById('closeBox');
+
+        caixa.addEventListener('click', () => {
+            box.classList.toggle('show');
+        });
+        closeButton.addEventListener('click', () => {
+            box.classList.remove('show');
+        });
+
+
+</script>
+
 
 </body>
+
 </html>
