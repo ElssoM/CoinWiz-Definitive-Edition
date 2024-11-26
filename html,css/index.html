@@ -4,300 +4,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tela Principal</title>
-  <style>
-    * {
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Tela cheia da imagem */
-    .hero {
-      position: relative;
-      width: 100vw;
-      height: 56.25vw;
-      /* Proporção 16:9 */
-      max-height: 100vh;
-      overflow: hidden;
-    }
-
-    /* Imagem com animação de zoom */
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      animation: zoomEffect 5s ease forwards;
-    }
-
-    /* Textos sobre a imagem */
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-    }
-
-    .hero-text h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero-text p {
-      font-size: 1.2rem;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Efeito de zoom */
-    @keyframes zoomEffect {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.1);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* Desativa a animação após o primeiro carregamento */
-    .no-animation img {
-      animation: none;
-    }
-
-    /* Seção com blocos empilhados */
-    .section-divider {
-      display: flex;
-      flex-direction: column;
-      margin-top: 40px;
-      padding: 0 20px;
-      gap: 20px;
-    }
-
-    .block {
-      padding: 20px;
-      position: relative;
-      cursor: pointer;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 45%;
-    }
-
-    .block-gray {
-      background-color: rgb(13, 13, 13);
-      color: white;
-    }
-
-    .block-white {
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    .block-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .block-text {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    /* Ajustando a imagem para o formato 4:3 */
-    .block-image {
-      flex-basis: 45%;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 8px;
-    }
-
-    .block-text-container {
-      flex: 1;
-      text-align: justify;
-      padding-left: 20px;
-    }
-
-    /* Seção de Avaliações */
-    .reviews-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
-      gap: 20px;
-      padding: 0 20px;
-      overflow-x: hidden;
-      /* Remover barra de rolagem horizontal */
-    }
-
-    .review-box {
-      flex-basis: calc(30% - 20px);
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      flex-grow: 1;
-      flex-shrink: 1;
-      max-width: 100%;
-    }
-
-    /* Foto da pessoa */
-    .review-photo {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 15px;
-    }
-
-    /* Layout da avaliação */
-    .review-content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .review-text {
-      font-size: 0.9rem;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .stars {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      font-size: 1rem;
-      color: gold;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .block-image {
-        flex-basis: 100%;
-        margin-bottom: 15px;
-      }
-
-      .block-text-container {
-        padding-left: 0;
-      }
-
-      .reviews-section {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .review-box {
-        flex-basis: 100%;
-      }
-    }
-  </style>
+  <title>Tela Principal - Versão Branca</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <div class="navbar">
+    <div class="logo">CoinWiz</div>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="biblioteca.html">Biblioteca Virtual</a>
+      <a href="i.html">Página de Ativos</a>
+    </div>
+    <div class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="mobile-menu">
+      <a href="#">Início</a>
+      <a href="biblioteca.html">Biblioteca Virtual</a>
+      <a href="#">Página de Ativos</a>
+    </div>
+  </div>
+
   <div class="hero" id="heroSection">
     <img src="IMGGGS homepage/pexels-pixabay-371578.jpg" alt="Imagem de fundo">
     <div class="hero-text">
       <h1>CoinWiz</h1>
-      <p>Juntos, transformaremos desafios em passos rumo ao sucesso e garantiremos que sua meta se torne realidade. Como
-        mágica, cada obstáculo se tornará parte da jornada para a vitória.</p>
+      <p>Na CoinWiz, transformamos desafios em passos para o sucesso, garantindo que suas metas se tornem realidade.</p>
     </div>
   </div>
 
   <!-- Seção com blocos empilhados -->
   <section class="section-divider">
-    <div class="block block-gray" onclick="window.location.href='#';">
+    <div class="block block-gray" onclick="window.location.href='i.html';">
       <div class="block-image-container">
-        <img class="block-image" src="invest.jpeg" alt="Imagem Criptomoedas">
+        <img class="block-image" src="IMGGGS homepage/wallstreet.jpg" alt="Imagem Criptomoedas">
       </div>
       <div class="block-text-container">
         <div class="block-title">Conheça sobre Criptomoedas</div>
         <div class="block-text">
           Conheça mais sobre o investimento mais conhecido e, ao mesmo tempo, o mais desconhecido do mundo. As
           criptomoedas estão revolucionando o mercado financeiro global e são a nova fronteira de investimento.
-          Aproveite a oportunidade de aprender mais sobre o Bitcoin, Ethereum, e outras moedas digitais.
         </div>
       </div>
     </div>
     <div class="block block-white" onclick="window.location.href='biblioteca.html';">
       <div class="block-image-container">
-        <img class="block-image" src="IMGGGS homepage/Bibliotecaa.avif" alt="Imagem Biblioteca">
+        <img class="block-image" src="IMGGGS homepage/Sem nome (800 x 800 px).png" alt="Imagem Biblioteca">
       </div>
       <div class="block-text-container">
         <div class="block-title">Conheça nossa Biblioteca</div>
         <div class="block-text">
           Aprimore seus conhecimentos com nossos Livros/PDF's disponíveis! Temos uma coleção vasta de materiais
-          educativos, com foco em áreas como finanças, criptomoedas, e desenvolvimento pessoal. Cada livro é uma
-          oportunidade de aprofundar seu entendimento sobre o mundo financeiro.
+          educativos, com foco em áreas como finanças, criptomoedas, e desenvolvimento pessoal.
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="news-section">
+    <h2>Notícias Financeiras</h2>
+    <div id="news-container">
+      <!-- Notícias serão carregadas aqui -->
     </div>
   </section>
 
   <!-- Seção de Avaliações -->
   <section class="reviews-section">
-    <!-- Primeiro quadrado de avaliação -->
     <div class="review-box">
-      <img class="review-photo" src="IMGGGS homepage/thispersondoesnotexist.jpg" alt="Pessoa 1">
+      <img class="review-photo" src="IMGGGS homepage/thispersondoesnotexist.jpg" alt="Pessoa 1" loading="lazy">
       <div class="review-content">
-        <div class="review-text">
-          "Excelente plataforma! Me ajudou a alcançar minhas metas financeiras."
-        </div>
+        <div class="review-text">"Excelente plataforma! Me ajudou a alcançar minhas metas financeiras."</div>
       </div>
       <div class="stars">⭐⭐⭐⭐⭐</div>
     </div>
-
-    <!-- Segundo quadrado de avaliação -->
     <div class="review-box">
-      <img class="review-photo"
-        src="IMGGGS homepage/exemplos-de-fotos-geradas-por-inteligecircncia-artificial_o1gpbcghm31gu01guc2qf1jih1hnvk.png"
-        alt="Pessoa 2">
+      <img class="review-photo" src="IMGGGS homepage/exemplos-de-fotos-geradas-por-inteligecircncia-artificial_o1gpbcghm31gu01guc2qf1jih1hnvk.png" alt="Pessoa 2" loading="lazy">
       <div class="review-content">
-        <div class="review-text">
-          "A interface é muito fácil de usar, e a experiência foi incrível!"
-        </div>
+        <div class="review-text">"A interface é muito fácil de usar, e a experiência foi incrível!"</div>
       </div>
       <div class="stars">⭐⭐⭐⭐</div>
     </div>
-
-    <!-- Terceiro quadrado de avaliação -->
     <div class="review-box">
-      <img class="review-photo" src="IMGGGS homepage/IMG_4034.webp" alt="Pessoa 3">
+      <img class="review-photo" src="IMGGGS homepage/IMG_4034.webp" alt="Pessoa 3" loading="lazy">
       <div class="review-content">
-        <div class="review-text">
-          "Fiquei muito satisfeito com os resultados. A plataforma é intuitiva."
-        </div>
+        <div class="review-text">"Fiquei muito satisfeito com os resultados. A plataforma é intuitiva."</div>
       </div>
       <div class="stars">⭐⭐⭐⭐⭐</div>
     </div>
   </section>
 
-  <script>
-    // Verifica se a animação já foi executada
-    if (sessionStorage.getItem("animationPlayed")) {
-      document.getElementById("heroSection").classList.add("no-animation");
-    } else {
-      sessionStorage.setItem("animationPlayed", "true");
-    }
-  </script>
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-links">
+      <p>&copy; 2024 CoinWiz. Todos os direitos reservados.</p>
+      <p><a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a> | <a href="#">Contato</a></p>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 
 </html>
