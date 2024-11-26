@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Winz - Login</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <div class="corsa">
+        <h2>Conhecimento Financeiro</h2>
+        <p>Faça login para conhecer mais sobre nosso WEBSITE</p>
+        <p>Não possui uma conta? <a href="./cadastro.html">Clique aqui</a></p>
+        
+        <div id="message" class="error-message"></div>
+        
+        <form id="loginForm">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" placeholder="Digite seu email" required>
+        
+            <label for="loginPassword">Senha:</label>
+            <input type="password" id="loginPassword" placeholder="Digite sua senha" required>
+        
+            <button type="submit">Entrar</button>
+        </form>        
+    </div>
+    
+    <script src="./login.js" type="module"></script>
+</body>
+</html>
