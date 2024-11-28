@@ -33,16 +33,25 @@ async function fetchNews() {
     const data = await response.json();
 
     if (data.status === 'ok') {
-      data.articles.slice(0, 5).forEach(article => { // Mostra as 6 primeiras notícias
+      // Filtra os artigos com título OU descrição "[Removed]"
+      const filteredArticles = data.articles.filter(article => {
+        return article.title !== "[Removed]" && article.description !== "[Removed]";
+      });
+
+      filteredArticles.slice(0, 5).forEach(article => {
         const newsItem = document.createElement('div');
         newsItem.classList.add('news-item');
 
-        const image = article.urlToImage ? `<img src="${article.urlToImage}" alt="${article.title}">` : ''; // Lida com notícias sem imagem
+        // Adicione um operador de coalescência nula para lidar com imagens, títulos e descrições ausentes
+        const image = article.urlToImage ?? ''; 
+        const title = article.title ?? 'Sem título';
+        const description = article.description ?? 'Sem descrição';
+
         newsItem.innerHTML = `
-          ${image}
-          <h3>${article.title}</h3>
-          <p>${article.description}</p>
-          <a href="${article.url}" target="_blank">Leia mais</a>
+          <img src="${image}" alt="${title}" loading="lazy">
+          <h3>${title}</h3>
+          <p>${description}</p>
+          <a href="${article.url ?? '#'} "target="_blank">Leia mais</a>
         `;
         newsContainer.appendChild(newsItem);
       });
