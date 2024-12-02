@@ -1,123 +1,311 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investimentos para Negócios</title>
+    <title>LCN - Liberty City National</title>
     <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #007aff;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #333;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007aff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: #ffffff;
+            position: absolute;
+            top: 100%;
+            right: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #007aff;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
-        .section {
-            padding: 40px;
-            margin: 20px;
-            border-radius: 8px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .section h2 {
+        .header h1 {
+            margin: 0;
             font-size: 24px;
+        }
+        .navbar {
+            background-color: #222;
+            color: rgb(0, 0, 0);
+            display: flex;
+            padding: 10px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .stock-ticker {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .stock-ticker span {
             color: #333;
-            margin-bottom: 10px;
         }
-        .section p {
-            color: #666;
-            font-size: 16px;
+        .stock-ticker .up {
+            color: green;
         }
-        .tradingview-widget-container {
-            margin-top: 20px;
+        .stock-ticker .down {
+            color: red;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        .chart, .news {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-right: 20px;
+            flex: 1;
+        }
+        .chart {
+            max-width: 60%;
+            position: relative;
+            height: 400px;
+        }
+        .chart iframe {
+            background-color: white;
+        }
+        .news {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .news-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .news-box a {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+        }
+        .market-movers {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #0056b3;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-  
-    <section class="section">
-        <h2>Investimentos em Ações</h2>
-        <p>Para empresas tradicionais, apresentamos investimentos em ações de grandes corporações como Apple, Microsoft, e Google.</p>
+    <div class="navbar">
+        <div class="logo">CoinWiz</div>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="biblioteca.html">Biblioteca Virtual</a>
+            <a href="i.html">Página de Ativos</a>
+            <a href="lista.html">Verificar Mercado</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
     
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-            {
-                "symbols": [
-                    ["Apple", "AAPL|1D"],
-                    ["Microsoft", "MSFT|1D"],
-                    ["Alphabet", "GOOGL|1D"]
-                ],
-                "chartOnly": false,
-                "width": "100%",
-                "height": "400",
-                "locale": "br",
-                "colorTheme": "light",
-                "autosize": true,
-                "showVolume": true,
-                "changeMode": "price-and-percent",
-                "chartType": "line"
-            }
-            </script>
+    <div class="stock-ticker">
+        <span>DOL 556.08 <span class="up">+2.64%</span></span>
+        <span>FLC 216.32 <span class="down">-3.08%</span></span>
+        <span>HJK 72.76 <span class="down">-8.56%</span></span>
+        <span>AUG 239.67 <span class="up">+0.4%</span></span>
+    </div>
+    <div class="content">
+        <div class="chart">
+            <h2>Market Performance</h2>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                {
+                    "symbols": [
+                        ["Apple", "AAPL|1D"],
+                        ["Google", "GOOGL|1D"],
+                        ["Microsoft", "MSFT|1D"]
+                    ],
+                    "chartOnly": false,
+                    "width": "100%",
+                    "height": "400",
+                    "locale": "en",
+                    "colorTheme": "light",
+                    "autosize": true
+                }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
         </div>
-      
-    </section>
-
-   
-    <section class="section">
-        <h2>Investimentos em Criptomoedas</h2>
-        <p>Para negócios de tecnologia e inovação, investimentos em criptomoedas como Bitcoin e Ethereum são uma excelente opção.</p>
-     
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-            {
-                "symbols": [
-                    ["Bitcoin", "BITSTAMP:BTCUSD|1D"],
-                    ["Ethereum", "COINBASE:ETHEUR|1D"]
-                ],
-                "chartOnly": false,
-                "width": "100%",
-                "height": "400",
-                "locale": "br",
-                "colorTheme": "light",
-                "autosize": true,
-                "showVolume": true,
-                "changeMode": "price-and-percent",
-                "chartType": "line"
-            }
-            </script>
+        <div class="news">
+            <h2>Main Stories</h2>
+            <div id="news-container">
+                <div>Loading news...</div>
+            </div>
         </div>
-       
-    </section>
+    </div>
+    <div class="market-movers">
+        <h2>Market Movers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Avg. Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Co.</td>
+                    <td>$123.45</td>
+                    <td>+1.23%</td>
+                </tr>
+                <tr>
+                    <td>Sample Inc.</td>
+                    <td>$67.89</td>
+                    <td>-0.56%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // API para carregar notícias
+        const apiKey = "e3b8011b1c544b78b0798cf4b7f6073d";
+        const url = `https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=${apiKey}`;
 
-    
-    <section class="section">
-        <h2>Investimentos em Empresas de Tecnologia</h2>
-        <p>Investimentos recomendados para startups e empresas de inovação, incluindo NVIDIA e Meta (antigo Facebook).</p>
-       
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-            {
-                "symbols": [
-                    ["NVIDIA", "NASDAQ:NVDA|1D"],
-                    ["Meta", "NASDAQ:META|1D"]
-                ],
-                "chartOnly": false,
-                "width": "100%",
-                "height": "400",
-                "locale": "br",
-                "colorTheme": "light",
-                "autosize": true,
-                "showVolume": true,
-                "changeMode": "price-and-percent",
-                "chartType": "line"
+        async function fetchNews() {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const newsContainer = document.getElementById("news-container");
+                newsContainer.innerHTML = ""; // Limpa o placeholder
+        
+                // Limita o número de notícias a 5
+                const articles = data.articles.slice(0, 5);
+        
+                articles.forEach(article => {
+                    const newsBox = document.createElement("div");
+                    newsBox.classList.add("news-box");
+                    newsBox.innerHTML = `
+                        <a href="${article.url}" target="_blank">${article.title}</a>
+                        <p>${article.description || "Descrição não disponível"}</p>
+                    `;
+                    newsContainer.appendChild(newsBox);
+                });
+            } catch (error) {
+                console.error("Erro ao carregar notícias:", error);
             }
-            </script>
-        </div>
-        <!-- TradingView Widget END -->
-    </section>
+        }
+        
+        fetchNews();
 
+        
+    </script>
 </body>
 </html>

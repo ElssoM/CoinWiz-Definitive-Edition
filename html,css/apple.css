@@ -1,0 +1,442 @@
+/* Reset */
+body, h1, h2, h3, p, ul, li, a, table, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f4f4f4;
+  }
+  
+  .chart {
+    flex: 7; /* Gráfico ocupa 70% */
+    margin-right: 20px;
+  }
+
+  .header {
+    background-color: #0078d7;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+
+  .stock-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+  
+  .header .logo {
+    text-align: left;
+  }
+  
+  .header .cash-info {
+    text-align: right;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #007aff;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #007aff;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007aff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: #007aff;
+}
+
+  
+  .stocks-ticker {
+    background-color: #f0f0f0;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    text-align: center;
+  }
+  
+  .stocks-ticker .up {
+    color: green;
+  }
+  
+  .stocks-ticker .down {
+    color: red;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .stock-info {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stock-info .chart {
+    margin: 20px 0;
+  }
+  
+  .buy-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .buy-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 50%;
+  }
+  
+  table td {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .info-grid {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .info-grid div {
+    width: 48%;
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .additional-info h2, .additional-info h3 {
+    margin-top: 30px;
+    color: #333;
+  }
+  
+  .additional-info p, .info-grid div {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .investment-simulator {
+    flex: 3; /* Simulador ocupa 30% */
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .investment-simulator h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .investment-simulator label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+  }
+  
+  .investment-simulator input,
+  .investment-simulator select,
+  .investment-simulator button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #investment-result {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .investment-simulator {
+    flex: 3; /* Simulador ocupa 30% */
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .investment-simulator h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .investment-simulator label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+  }
+  
+  .investment-simulator input,
+  .investment-simulator select,
+  .investment-simulator button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #investment-result {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .info-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
+  
+  .info-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    width: 22%;
+  }
+  
+  .info-box h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .info-box p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .stock-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .chart {
+    flex: 2;
+    margin-right: 20px;
+  }
+  
+  .investment-simulator {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .detailed-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .detailed-info h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .detailed-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .detailed-info ul li {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  body, h1, h2, h3, p, ul, li, input, select, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .header {
+    background-color: #0078d7;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  
+  .navbar ul li {
+    margin: 0 15px;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .stocks-ticker {
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  
+  .stocks-ticker .up {
+    color: green;
+  }
+  
+  .stocks-ticker .down {
+    color: red;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .stock-details {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .chart, .investment-simulator {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .investment-simulator h3 {
+    margin-bottom: 15px;
+  }
+  
+  #investment-result {
+    margin-top: 20px;
+    font-size: 16px;
+    color: green;
+  }
+  

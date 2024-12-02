@@ -1,0 +1,175 @@
+/* Estilo Geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #e0e8f9;
+    color: #333;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e8f9;
+    color: #333;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0; /* Mantém a navbar no topo ao rolar */
+    z-index: 100;
+    width: 100%; /* Garante que a largura seja a da tela */
+    overflow-x: hidden
+  }
+  
+  /* Espaçamento entre navbar e conteúdo */
+  main {
+    margin-top: 80px; /* Garante espaço após a navbar */
+  }
+  
+  /* Ajustes adicionais para links */
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #007aff;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #007aff;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  /* Hamburger Menu (apenas para dispositivos móveis, se necessário) */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+  }
+  
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    gap: 1rem;
+    z-index: 10;
+  }
+  
+  .mobile-menu a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .mobile-menu a:hover {
+    color: #007aff;
+  }
+  
+  
+  .cash {
+    font-size: 18px;
+  }
+  
+  /* Ticker */
+  .ticker {
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 5px; /* Adiciona espaço entre navbar e ticker */
+    position: sticky;
+    top: 64px; /* Altura da navbar */
+    z-index: 99; /* Certifica que ficará abaixo da navbar */
+}
+  
+  marquee {
+    font-size: 14px;
+  }
+  
+  /* Tabela */
+  .table-container {
+    margin: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #003366;
+    color: white;
+    padding: 5px 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  thead {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  tbody tr:hover {
+    background-color: #d3e4ff;
+  }
+  
+  td.positive {
+    color: green;
+  }
+  
+  td.negative {
+    color: red;
+  }
+  

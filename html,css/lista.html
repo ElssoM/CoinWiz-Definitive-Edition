@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Índice de Troca LCN</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">CoinWiz</div>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="biblioteca.html">Biblioteca Virtual</a>
+      <a href="i.html">Página de Ativos</a>
+      <a href="lista.html">Verificar Mercado</a>
+      <a href="login.html">Login</a>
+    </div>
+  </div>
+  
+
+  <div class="ticker">
+    <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 16px; margin-bottom: 10px;"></marquee>
+  </div>
+  
+  <main>
+    <div class="table-container">
+      <div class="table-header">
+        <div class="logo-table">Coinwiz</div>
+        <div class="sub-logo">Mercado em tempo real</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Simbolo</th>
+            <th>Nome</th>
+            <th>Movimento de Preço</th>
+            <th>% Mudança</th>
+            <th>Setor</th>
+            <th>Análise</th>
+            <th>Crescimento</th>
+            <th>setor</th>
+            <th>Boa ideia de comprar?</th>
+          </tr>
+        </thead>
+        <tbody id="stock-data">
+          <!-- Linhas Dinâmicas para empresas -->
+          <tr>
+            <th>Símbolo</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Variação</th>
+            <th>Volume</th>
+            <th>Valor de Mercado</th>
+            <th>Crescimento EPS</th>
+            <th>Setor</th>
+            <th>Comprar?</th>
+        </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+</table>
+    </div>
+  </main>
+</body>
+<script src="script.js"></script>
+</html>
